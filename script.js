@@ -8,51 +8,46 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to add a new task
     function addTask() {
-        // Get and trim text inside the input field
-        const taskText = taskInput.value.trim();
+        const taskText = taskInput.value.trim(); // Get and trim input text
 
-        // If empty, warn the user
+        // If input is empty
         if (taskText === "") {
-            alert("Please enter a task!");
+            alert("Please enter a task");
             return;
         }
 
-        // Create a new list item <li>
+        // Create a new <li>
         const li = document.createElement('li');
         li.textContent = taskText;
 
-        // Create the remove button
+        // Create the Remove button
         const removeBtn = document.createElement('button');
         removeBtn.textContent = "Remove";
-        removeBtn.className = 'remove-btn';
+        removeBtn.className = 'remove-btn';  // Add class name
 
-        // Event: remove the task when clicking the remove button
+        // On click → remove the task
         removeBtn.onclick = function () {
             taskList.removeChild(li);
         };
 
-        // Add the remove button to <li>
+        // Add button to li
         li.appendChild(removeBtn);
 
-        // Add the <li> to the <ul>
+        // Add li to task list
         taskList.appendChild(li);
 
         // Clear input field
         taskInput.value = "";
     }
 
-    // Event listener: add task when button is clicked
+    // Add task when button is clicked
     addButton.addEventListener('click', addTask);
 
-    // Event listener: add task when pressing Enter key
+    // Add task when pressing Enter key
     taskInput.addEventListener('keypress', function (event) {
         if (event.key === 'Enter') {
             addTask();
         }
     });
 
-    // ❗ Instruction says: invoke addTask on DOMContentLoaded
-    // (Although unusual, we must follow instructions)
-    // This will add an empty check — so nothing will happen
-    addTask();
 });
